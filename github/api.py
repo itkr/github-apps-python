@@ -30,9 +30,14 @@ class Issue(REST):
     BASE_URL = 'https://api.github.com/repos/{owner}/{repo}/issues'
 
 
+class IssueComment(REST):
+    # https://developer.github.com/v3/issues/comments
+    BASE_URL = 'https://api.github.com/repos/{owner}/{repo}/issues/{issue_number}/comments'
+
+
 class Installation(REST):
-    # https://developer.github.com/v3/apps/installations
-    BASE_URL = 'https://api.github.com/installations'
+    # https://developer.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-an-installation
+    BASE_URL = 'https://api.github.com/app/installations'
 
     def get_token(self, installation_id: int) -> str:
         url = '{}/{}/access_tokens'.format(self.base_url, str(installation_id))

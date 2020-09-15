@@ -1,7 +1,7 @@
 import jwt
 from datetime import datetime, timedelta
 
-from .api import Installation, Issue, ProjectCard
+from .api import Installation, Issue, ProjectCard, IssueComment
 
 
 class GitHubApp(object):
@@ -43,6 +43,9 @@ class GitHubApp(object):
 
     def issues(self, owner: str, repo: str) -> Issue:
         return Issue(self._token_header, owner=owner, repo=repo)
+
+    def issue_comments(self, owner: str, repo: str, issue_number) -> IssueComment:
+        return IssueComment(self._token_header, owner=owner, repo=repo, issue_number=issue_number)
 
     def project_cards(self, column_id):
         return ProjectCard(self._token_header, column_id=column_id)
