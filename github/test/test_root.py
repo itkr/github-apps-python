@@ -11,9 +11,11 @@ class TestRoot(unittest.TestCase):
 
     def setUp(self):
         try:
-            with open('../../env.yaml') as f:
+            path = os.path.join(os.path.dirname(__file__), 'env.yaml')
+            with open(path) as f:
                 os.environ.update(yaml.load(f))
         except FileNotFoundError as e:
+            print('aaa')
             pass
 
         envs = {
